@@ -1,9 +1,10 @@
 package ru.gb.simulater.equipments;
 
+import ru.gb.simulater.mnemonicDiagram.StatusCheck;
 import ru.gb.simulater.models.Equipment;
 import ru.gb.simulater.models.Parameter;
 
-public class UpConverter extends Equipment {
+public class UpConverter extends Equipment implements StatusCheck {
     private String model;
     private String serialNumber;
     private Parameter outFrequency;
@@ -27,5 +28,17 @@ public class UpConverter extends Equipment {
                 ", inFrequency=" + inFrequency +
                 ", frequencyRange=" + frequencyRange +
                 '}';
+    }
+
+
+    public boolean isSwitchOn() {
+        //check status, if this equipment is switched on return true
+        return true;
+    }
+
+    @Override
+    public void draw() {
+        if (isSwitchOn()) System.out.println("UpConverter is green");
+        else System.out.println("UpConverter is red");
     }
 }
