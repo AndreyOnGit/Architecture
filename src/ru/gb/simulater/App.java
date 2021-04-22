@@ -8,6 +8,7 @@ import ru.gb.simulater.models.Dimension;
 import ru.gb.simulater.models.DownConverterBuilder;
 import ru.gb.simulater.models.Parameter;
 import ru.gb.simulater.models.UpConverterBuilder;
+import ru.gb.simulater.users.DisplayObserver;
 
 public class App {
     public static void main(String[] args) {
@@ -18,7 +19,9 @@ public class App {
         System.out.println("Drawing mnemonic diagram...");
         StatusCheck statusCheckDownConverter = mountDownConverter();
         StatusCheck statusCheckUpConverter = mountUpConverter();
-        StatusCheck statusChecks = new Diagram().add(statusCheckUpConverter, statusCheckDownConverter);
+        Diagram diagram = new Diagram();
+        attachDisplayObserver(diagram);
+        StatusCheck statusChecks = diagram.add(statusCheckUpConverter, statusCheckDownConverter);
         statusChecks.draw();
     }
 
@@ -43,5 +46,10 @@ public class App {
         DownConverter downConverter = downConverterBuilder.build();
         return downConverter;
     }
+
+    public static void attachDisplayObserver(Diagram diagram) {
+        diagram.attach(new DisplayObserver());
+    }
+
 
 }

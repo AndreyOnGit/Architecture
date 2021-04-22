@@ -32,8 +32,8 @@ public class DownConverter extends Equipment implements StatusCheck {
 
 
     @Override
-    public void draw() {
+    public String draw() {
         //if DownConverter WO control interface
-        System.out.println("DownConverter is black");
+        return "DownConverter is black";
     }
 }

@@ -33,12 +33,12 @@ public class UpConverter extends Equipment implements StatusCheck {
 
     public boolean isSwitchOn() {
         //check status, if this equipment is switched on return true
-        return true;
+        return false;
     }
 
     @Override
-    public void draw() {
-        if (isSwitchOn()) System.out.println("UpConverter is green");
-        else System.out.println("UpConverter is red");
+    public String draw() {
+        if (isSwitchOn()) return "UpConverter is green";
+        else return "UpConverter is red";
     }
 }

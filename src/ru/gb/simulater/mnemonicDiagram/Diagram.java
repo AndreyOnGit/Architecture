@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Diagram implements StatusCheck {
+public class Diagram extends Subject implements StatusCheck {
     public List<StatusCheck> statusChecks = new ArrayList<>();
 
 
     @Override
-    public void draw() {
+    public String draw() {
+        StringBuilder stringBuilder = new StringBuilder();
         for (StatusCheck statusCheck : statusChecks) {
-            statusCheck.draw();
+            stringBuilder.append(statusCheck.draw());
+            if (statusCheck.draw().contains("red")) notify("There are some problems: " + statusCheck.draw());
         }
+        return stringBuilder.toString();
     }
 
     public StatusCheck add(StatusCheck... statusChecks) {
